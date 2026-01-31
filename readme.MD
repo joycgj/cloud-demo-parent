@@ -29,7 +29,7 @@ nacos 访问地址：http://localhost:8849/nacos
    - 手动停止 mission-server。
    - 再次访问上述地址。
    - 预期结果：页面不会报 404 或 500，而是返回 ["SDK级降级：服务连接失败"]。
-   - 日志打印：Mission服务不可用，VIN: VIN124, 异常: Unexpected end of file from server executing GET http://mission-server/mission/list/VIN124
+   ```Mission服务不可用，VIN: VIN124, 异常: Unexpected end of file from server executing GET http://mission-server/mission/list/VIN124```
    - 查看 vehicle-server 控制台：你会看到 FallbackFactory 打印的日志，详细说明了连接被拒绝（ConnectException）的原因。
 
 ```
@@ -41,7 +41,7 @@ feign:
 
 必须设置为 true，如果设置为 false，curl http://localhost:8002/vehicle/missions/VIN124 会报如下错误：
 
-{"timestamp":"2026-01-31T06:00:57.631+0000","status":500,"error":"Internal Server Error","message":"Unexpected end of file from server executing GET http://mission-server/mission/list/VIN124","path":"/vehicle/missions/VIN124"}
+```{"timestamp":"2026-01-31T06:00:57.631+0000","status":500,"error":"Internal Server Error","message":"Unexpected end of file from server executing GET http://mission-server/mission/list/VIN124","path":"/vehicle/missions/VIN124"}```
 
 **超时验证步骤**
 
