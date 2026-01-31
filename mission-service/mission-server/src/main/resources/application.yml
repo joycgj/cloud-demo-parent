@@ -1,0 +1,10 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: mission-server # 这个名字必须和 vehicle-server 中 FeignClient 命名的 name 一致
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8849 # Nacos 服务端的地址

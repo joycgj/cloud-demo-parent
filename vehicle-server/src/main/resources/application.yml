@@ -1,0 +1,21 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: vehicle-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8849
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080 # Sentinel 控制台地址
+
+feign:
+  # 这一行在 Hoxton 版本极其重要，不写降级永远不生效！
+  sentinel:
+    enabled: true
+  client:
+    config:
+      default:
+        read-timeout: 1000
