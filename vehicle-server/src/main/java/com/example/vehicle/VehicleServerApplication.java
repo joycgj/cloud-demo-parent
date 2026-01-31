@@ -1,4 +1,4 @@
-package com.example;
+package com.example.vehicle;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,9 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 // 必须：指定 Feign 接口所在的包路径，否则无法注入 MissionFeign
-@EnableFeignClients(basePackages = "com.example.feign")
+@EnableFeignClients(basePackages = "com.example.mission.feign")
 // 关键：由于 FallbackFactory 在 client 模块，必须确保 ComponentScan 能扫描到它
-@ComponentScan(basePackages = {"com.example.controller", "com.example.feign"})
+@ComponentScan(basePackages = {"com.example.vehicle", "com.example.mission.feign"})
 public class VehicleServerApplication {
 
     public static void main(String[] args) {

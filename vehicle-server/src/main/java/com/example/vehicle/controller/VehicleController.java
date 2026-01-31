@@ -1,6 +1,8 @@
-package com.example.controller;
+package com.example.vehicle.controller;
 
-import com.example.feign.MissionFeign;
+import com.example.mission.feign.MissionFeign;
+import com.example.vehicle.entity.VehicleMissionSub;
+import com.example.vehicle.service.VehicleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
-
 @Slf4j
 @RestController
 @RequestMapping("/vehicle")
@@ -19,6 +19,9 @@ public class VehicleController {
 
     @Autowired
     private MissionFeign missionFeign; // SDK 提供的 Feign 接口
+
+    @Autowired
+    private VehicleService vehicleService;
 
     /**
      * 测试接口：获取车辆正在运行的任务
@@ -32,6 +35,10 @@ public class VehicleController {
         List<String> missions = missionFeign.getMissions(vin);
         
         log.info("查询结果: {}", missions);
+
+        VehicleMissionSub vehicleMissionSub = vehicleService.getVehicleMission(vin);
+        log.info("通过 VehicleService 获取的 VehicleMissionSub: {}", vehicleMissionSub);
+
         return missions;
     }
 }
